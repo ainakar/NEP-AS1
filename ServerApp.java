@@ -28,26 +28,6 @@ public class ServerApp {
 				fromClient = new DataInputStream(socket.getInputStream());
 				toClient = new DataOutputStream(socket.getOutputStream());
 
-//				String msg = fromClient.readUTF();
-//				System.out.println(msg);
-
-//				while(true) {
-//
-//					double length = fromClient.readDouble(); //read
-//					double breadth = fromClient.readDouble(); //read
-//
-//					System.out.println("Received Length: " + length);
-//					System.out.println("Received Breadth: " + breadth);
-//
-//					double area = length * breadth;
-//					toClient.writeDouble(area); //send
-//
-//					boolean wantContinue = fromClient.readBoolean();
-//					if(!wantContinue) {
-//						break;
-//					}
-//
-//				}
 				int userScore;
 				int cpuScore;
 				int userOverall;
@@ -115,11 +95,6 @@ public class ServerApp {
 
 						toClient.writeInt(results);
 
-						//					boolean wantContinue = fromClient.readBoolean();
-						//					if(!wantContinue) {
-						//						break;
-						//					}
-
 						rounds--;
 					}
 					
@@ -141,16 +116,13 @@ public class ServerApp {
 					}
 				}
 				
-				int cumulativeUser = userOverall + userScore;
-				int cumulativeComp = cpuOverall + cpuScore;
+				int finalUser = userOverall;
+				int finalComp = cpuOverall;
 				
-				toClient.writeInt(cumulativeUser);
-				toClient.writeInt(cumulativeComp);
+				toClient.writeInt(finalUser);
+				toClient.writeInt(finalComp);
 								
 			}
-
-			//				String msg = fromClient.readUTF();
-			//				System.out.println(msg);
 							
 		} catch (IOException e) {
 			e.printStackTrace();

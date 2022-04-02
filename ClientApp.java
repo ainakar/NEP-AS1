@@ -21,34 +21,6 @@ public class ClientApp {
 
 			toServer = new DataOutputStream(socket.getOutputStream()); 
 			fromServer = new DataInputStream(socket.getInputStream());
-
-//			while(true) {
-//				System.out.println("Input Rectangle Length: ");
-//				double length = Double.parseDouble(scanner.nextLine()); //capture
-//
-//				System.out.println("Input Rectangle Breadth: ");
-//				double breadth = Double.parseDouble(scanner.nextLine()); //capture
-//
-//				//			toServer.writeUTF("Hello");
-//
-//
-//				toServer.writeDouble(length); //send
-//				toServer.writeDouble(breadth); //send
-//
-//				double area = fromServer.readDouble(); //read
-//				System.out.println("Area: " + area);
-//
-//				System.out.println("Do you want to continue? y/n");
-//				String wantContinue = scanner.nextLine();
-//				
-//				if(wantContinue.equalsIgnoreCase("y")) {
-//					toServer.writeBoolean(true);
-//					
-//				} else {
-//					toServer.writeBoolean(false);
-//					break;
-//				}
-//			}
 			
 			System.out.print("Please enter your name: ");
 			toServer.writeUTF(scanner.nextLine());
@@ -78,17 +50,6 @@ public class ClientApp {
 						System.out.println("It's a draw!\r\n");
 					}
 
-					//				System.out.print("Do you want to continue? y/n: ");
-					//				String wantContinue = scanner.nextLine();
-					//				System.out.println(); //newline
-					//				
-					//				if(wantContinue.equalsIgnoreCase("y")) {
-					//					toServer.writeBoolean(true);
-					//				} else {
-					//					toServer.writeBoolean(false);
-					//					break;
-					//				}
-
 					rounds--;
 				}
 
@@ -109,10 +70,10 @@ public class ClientApp {
 				
 			}
 			
-			int cumulativeUser = fromServer.readInt();
-			int cumulativeComp = fromServer.readInt();
+			int finalUser = fromServer.readInt();
+			int finalComp = fromServer.readInt();
 
-			System.out.println("\r\nYour overall score is: " + cumulativeUser + ". You lost in total of " + cumulativeComp + " time(s).");
+			System.out.println("\r\nYour last score is: " + finalUser + ". You lost " + finalComp + " time(s).");
 			
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
@@ -142,7 +103,6 @@ public class ClientApp {
 			}
 
 		}
-
 
 	}
 
